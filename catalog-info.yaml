@@ -1,0 +1,27 @@
+# The registry (dop-amine/catalog) reads this file nightly. Shape and rules:
+# catalog/schema/catalog-info.schema.json, and catalog DECISIONS.md C-22.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: league-coach-releases
+  title: League Coach releases
+  description: >-
+    The public download point for League Coach: the Windows installer on each
+    GitHub Release, and the latest.json manifest the in-app updater reads. No
+    source lives here; dop-amine/league-coach publishes into it.
+  annotations:
+    github.com/project-slug: dop-amine/league-coach-releases
+    # 2, like the app: a broken latest.json or installer stops every installed
+    # copy updating, which annoys me the same day.
+    dop-amine.com/tier: '2'
+    dop-amine.com/hosting: github-releases
+    dop-amine.com/audience: public
+  links:
+    - url: https://github.com/dop-amine/league-coach-releases/releases/latest
+      title: Latest release
+      icon: repo
+spec:
+  type: distribution
+  lifecycle: production
+  owner: dop-amine
+  system: league-coach-system
